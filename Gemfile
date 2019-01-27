@@ -18,7 +18,7 @@ gem 'rails', '~> 5.2.2'
 gem 'redis', '~> 4.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
-gem 'webpacker'
+gem 'webpacker', '~> 3.5'
 
 group :development, :test do
   gem 'brakeman', '~> 3.3', '>= 3.3.2'
