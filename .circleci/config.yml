@@ -5,13 +5,12 @@ jobs: # a collection of steps
     docker: # run the steps with Docker
       - image: circleci/ruby:2.6.0-node-browsers-legacy # ...with this image as the primary container; this is where all `steps` will run
         environment: # environment variables for primary container
-          PG_HOST: localhost
-          PG_USER: poke-tracker
+          PGHOST: 127.0.0.1
+          PGUSER: circleci-poke-tracker_test
           RAILS_ENV: test
-          RACK_ENV: test
       - image: circleci/postgres:9.5-alpine # database image
         environment: # environment variables for database
-          POSTGRES_USER: poke-tracker
+          POSTGRES_USER: circleci-poke-tracker_test
           POSTGRES_DB: poke-tracker_test
           POSTGRES_PASSWORD: ""
     steps: # a collection of executable commands
@@ -62,10 +61,8 @@ jobs: # a collection of steps
             - ~/.cache/yarn
 
       - run:
-          name: Set up DB
-          command: |
-            bundle exec rake db:create db:schema:load --trace
-            bundle exec rake db:migrate
+          name: Database setup
+          command: bin/rails db:schema:load --trace
 
       - run:
           name: Run rspec in parallel
@@ -73,9 +70,10 @@ jobs: # a collection of steps
             bundle exec massa -V
 
       # Save test results for timing analysis
-      - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: /tmp/test_results
+      - store_test_results:
+          path: test_results
+
+      # Save the tests split for replication of failures with the same seed
       - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
+          path: test_results
+          destination: test_results
