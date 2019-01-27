@@ -1,5 +1,5 @@
-require "dry/transaction"
-require "dry/transaction/operation"
+require 'dry/transaction'
+require 'dry/transaction/operation'
 
 module Signup
   class PersistService

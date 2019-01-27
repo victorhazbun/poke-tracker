@@ -5,7 +5,7 @@ end
 
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'webmock/rspec'
@@ -13,7 +13,7 @@ require 'shoulda/matchers'
 
 WebMock.disable_net_connect!(allow_localhost: true)
 
-Dir[File.expand_path(File.join(File.dirname(__FILE__),'support','**','*.rb'))].each {|f| require f}
+Dir[File.expand_path(File.join(File.dirname(__FILE__), 'support', '**', '*.rb'))].each { |f| require f }
 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|

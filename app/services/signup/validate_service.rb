@@ -1,5 +1,5 @@
-require "dry/transaction"
-require "dry/transaction/operation"
+require 'dry/transaction'
+require 'dry/transaction/operation'
 
 module Signup
   class ValidateService
@@ -8,8 +8,6 @@ module Signup
     def call(params)
       SignupSchema.call(params.slice(:name)).to_monad
     end
-
-    private
 
     Dry::Validation.load_extensions(:monads)
 

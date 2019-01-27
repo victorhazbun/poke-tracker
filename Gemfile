@@ -5,6 +5,7 @@ ruby '2.6.0'
 
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bugsnag', '~> 6.11', '>= 6.11.1'
 gem 'coffee-rails', '~> 4.2'
 gem 'dry-auto_inject'
 gem 'dry-container'
@@ -19,7 +20,6 @@ gem 'redis', '~> 4.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.5'
-gem 'bugsnag', '~> 6.11', '>= 6.11.1'
 
 group :development, :test do
   gem 'brakeman', '~> 3.3', '>= 3.3.2'

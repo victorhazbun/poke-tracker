@@ -257,7 +257,7 @@ Style/StringLiterals:
   Description: Checks if uses of quotes match the configured preference.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-string-literals
   Enabled: true
-  EnforcedStyle: double_quotes
+  EnforcedStyle: single_quotes
   SupportedStyles:
   - single_quotes
   - double_quotes
@@ -265,7 +265,7 @@ Style/StringLiteralsInInterpolation:
   Description: Checks if uses of quotes inside expressions in interpolated strings
     match the configured preference.
   Enabled: true
-  EnforcedStyle: single_quotes
+  EnforcedStyle: double_quotes
   SupportedStyles:
   - single_quotes
   - double_quotes
@@ -383,6 +383,9 @@ Metrics/LineLength:
   URISchemes:
   - http
   - https
+  Exclude:
+    - 'config/**/*'
+    - 'spec/**/*'
 Metrics/MethodLength:
   Description: Avoid methods longer than 10 lines of code.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#short-methods
@@ -720,7 +723,7 @@ Layout/AlignParameters:
   Description: Align the parameters of a method call if they span more than one line.
   StyleGuide: https://github.com/bbatsov/ruby-style-guide#no-double-indent
   Enabled: true
-  EnforcedStyle: with_first_parameter
+  EnforcedStyle: with_fixed_indentation
   SupportedStyles:
   - with_first_parameter
   - with_fixed_indentation
