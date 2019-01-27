@@ -1,0 +1,19 @@
+rubocop:
+  description: 'Rubocop'
+  command:     'bundle exec rubocop'
+  required:    true
+
+brakeman:
+  description: 'Brakeman (security vulnerability scanner)'
+  command:     'bundle exec brakeman -Aqz5'
+  required:    true
+
+rails_best_practices:
+  description: 'Rails Best Practices'
+  command:     'bundle exec rails_best_practices'
+  required:    true
+
+rspec-rails:
+  description: 'RSpec'
+  command:     'RAILS_ENV=test bundle exec rspec'
+  required:    true

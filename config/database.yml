@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: poke-tracker_development
+
+test:
+  <<: *default
+  database: poke-tracker_test
+
+production:
+  <<: *default
+  database: poke-tracker_production
+  username: poke-tracker
+  password: <%= ENV['POKE-TRACKER_DATABASE_PASSWORD'] %>
