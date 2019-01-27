@@ -4,10 +4,14 @@ jobs: # a collection of steps
     parallelism: 3 # run three instances of this job in parallel
     docker: # run the steps with Docker
       - image: circleci/ruby:2.6.0-node-browsers-legacy # ...with this image as the primary container; this is where all `steps` will run
-
+        environment: # environment variables for primary container
+          PG_HOST: localhost
+          PG_USER: poke-tracker
+          RAILS_ENV: test
+          RACK_ENV: test
       - image: circleci/postgres:9.5-alpine # database image
         environment: # environment variables for database
-          POSTGRES_USER: pg
+          POSTGRES_USER: poke-tracker
           POSTGRES_DB: poke-tracker_test
           POSTGRES_PASSWORD: ""
     steps: # a collection of executable commands
@@ -46,6 +50,11 @@ jobs: # a collection of steps
           name: Yarn Install
           command: yarn install --cache-folder ~/.cache/yarn
 
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+
       # Store yarn / webpacker cache
       - save_cache:
           key: webpacker-dependencies-v1-{{ checksum "yarn.lock" }}
@@ -53,12 +62,10 @@ jobs: # a collection of steps
             - ~/.cache/yarn
 
       - run:
-          name: Database create
-          command: bin/rails db:create
-
-      - run:
-          name: Database schema load
-          command: bin/rails db:schema:create
+          name: Set up DB
+          command: |
+            bundle exec rake db:create db:schema:load --trace
+            bundle exec rake db:migrate
 
       - run:
           name: Run rspec in parallel
