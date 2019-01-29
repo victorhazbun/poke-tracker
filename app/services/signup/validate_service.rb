@@ -5,16 +5,8 @@ module Signup
   class ValidateService
     include Dry::Transaction::Operation
 
-    def call(params)
-      SignupSchema.call(params.slice(:name)).to_monad
-    end
-
-    Dry::Validation.load_extensions(:monads)
-
-    SignupSchema = Dry::Validation.Schema(AppSchema) do
-      configure { config.namespace = :signup }
-
-      required(:name).filled
+    def call(record:, params:)
+      SignupValidator::SignupSchema.with(record: User).call(params).to_monad
     end
   end
 end

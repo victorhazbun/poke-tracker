@@ -12,6 +12,7 @@ gem 'dry-container'
 gem 'dry-initializer'
 gem 'dry-monads'
 gem 'dry-transaction'
+gem 'dry-types'
 gem 'dry-validation'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
@@ -20,6 +21,7 @@ gem 'redis', '~> 4.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.5'
+gem 'jwt', '~> 2.1'
 
 group :development, :test do
   gem 'brakeman', '~> 3.3', '>= 3.3.2'
@@ -38,6 +40,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
+  gem 'rb-readline'
 end
 
 group :test do
