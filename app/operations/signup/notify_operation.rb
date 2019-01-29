@@ -2,7 +2,7 @@ require 'dry/transaction'
 require 'dry/transaction/operation'
 
 module Signup
-  class NotifyService
+  class NotifyOperation
     include Dry::Transaction::Operation
 
     def call(params)

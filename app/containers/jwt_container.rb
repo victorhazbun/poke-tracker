@@ -3,21 +3,21 @@ class JwtContainer
 
   namespace 'jwt_encode' do
     register 'validate' do
-      JwtEncode::ValidateService.new
+      JwtEncode::ValidateOperation.new
     end
 
     register 'execute' do
-      JwtEncode::ExecuteService.new
+      JwtEncode::ExecuteOperation.new
     end
   end
 
   namespace 'jwt_decode' do
     register 'validate' do
-      JwtDecode::ValidateService.new
+      JwtDecode::ValidateOperation.new
     end
 
     register 'execute' do
-      JwtDecode::ExecuteService.new
+      JwtDecode::ExecuteOperation.new
     end
   end
 end
