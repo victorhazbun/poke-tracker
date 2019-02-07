@@ -1,4 +1,6 @@
 en:
   errors:
     unique?: 'is not unique'
-
+    password_confirmation: 'does not match'
+    rules:
+      signup:

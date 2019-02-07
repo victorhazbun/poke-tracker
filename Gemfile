@@ -14,19 +14,21 @@ gem 'dry-monads'
 gem 'dry-transaction'
 gem 'dry-types'
 gem 'dry-validation'
+gem 'jwt', '~> 2.1'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 gem 'rails', '~> 5.2.2'
 gem 'redis', '~> 4.0'
 gem 'sass-rails', '~> 5.0'
+gem 'sidekiq', '~> 5.2', '>= 5.2.5'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker', '~> 3.5'
-gem 'jwt', '~> 2.1'
 
 group :development, :test do
   gem 'brakeman', '~> 3.3', '>= 3.3.2'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
+  gem 'factory_bot_rails'
   gem 'massa', '~> 0.5.0'
   gem 'rails_best_practices', '~> 1.15', '>= 1.15.7'
   gem 'rspec-rails', '~> 3.8'
@@ -37,10 +39,10 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'rb-readline'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-  gem 'rb-readline'
 end
 
 group :test do
@@ -48,7 +50,6 @@ group :test do
   gem 'capybara-selenium'
   gem 'chromedriver-helper'
   gem 'database_cleaner'
-  gem 'factory_bot_rails'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'timecop'

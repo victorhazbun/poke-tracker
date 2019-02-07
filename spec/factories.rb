@@ -6,4 +6,11 @@ FactoryBot.define do
   sequence :name do |n|
     "name #{n}"
   end
+
+  factory :user do
+    name
+    email
+    password { 'is-sekret' }
+    password_confirmation { 'is-sekret' }
+  end
 end

@@ -5,7 +5,7 @@ class AppSchema < Dry::Validation::Schema
     config.messages = :i18n
 
     def unique?(attr_name, value)
-      record.where.not(id: record.id).where(attr_name => value).empty?
+      record.class.where.not(id: record.id).where(attr_name => value).empty?
     end
   end
 end

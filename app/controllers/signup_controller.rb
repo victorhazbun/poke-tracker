@@ -1,21 +1,20 @@
 class SignupController < ApplicationController
 
   def create
-    signup_service = SignupService.new
-    signup_service.call(record: User, params: {}) do |m|
+    user = User.new
+    service = Signup::Creator.new
+    service.with_step_args(persist: [user: user]).call(record: user, attributes: params) do |m|
       m.success do |user|
-        puts "success #{user}"
-        # render json: user.to_json, status: :ok
+        render json: user.to_json, status: :ok
       end
 
       m.failure :validate do |validation|
-        puts "failure validate #{validation}"
-        # render json: validation.errors, status: :unprocessable_entity
+        render json: validation.errors, status: :unprocessable_entity
       end
 
-      m.failure do |error|
-        puts "failure #{error}"
-        # render json: error.message, status: :internal_server_error
+      m.failure do |exception|
+        Bugsnag.notify(exception)
+        render json: I18n.t :internal_server_error_message, status: :internal_server_error
       end
     end
   end

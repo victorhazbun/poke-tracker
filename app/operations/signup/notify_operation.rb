@@ -5,8 +5,8 @@ module Signup
   class NotifyOperation
     include Dry::Transaction::Operation
 
-    def call(params)
-      Success(params)
+    def call(user)
+      SignupMailer.with(user: user).welcome_email.deliver_later
     end
   end
 end
